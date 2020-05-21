@@ -17,13 +17,13 @@ mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true }
 const connection = mongoose.connection;
 connection.once('open', () => {
     console.log("MongoDB database connection established successfully");
-})
+});
 
-const profiles = require('./routes/profiles');
-const createProfiles = require('./routes/createProfile');
-
-app.use('/profiles', profiles);
-app.use('/createProfile', createProfiles);
+app.use('/auth', require('./routes/auth'));
+app.use('/profiles', require('./routes/profiles'));
+app.use('/createProfile', require('./routes/createProfile'));
+app.use('/createAdmin', require('./routes/createAdmin'));
+app.use('/editProfile', require('./routes/editProfile'));
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
