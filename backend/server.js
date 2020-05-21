@@ -10,15 +10,19 @@ const port = process.env.PORT || 4000;
 app.use(cors());
 app.use(express.json());
 
+//middleware to serve static files (html, css, images)
+//this has to come first
+app.use(express.static("../profile-creator/public"));
+
 //taking care of all deprecation warnings
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 mongoose.set('useUnifiedTopology', true);
 
-const uri = process.env.ATLAS_URI;
+//const uri = process.env.ATLAS_URI;
 //mongoose.connect(uri);
-mongoose.connect("mongodb://localhost/weekOne");
+mongoose.connect("mongodb+srv://hackingSpider:supernova@devjam2020-arlgz.mongodb.net/test?retryWrites=true&w=majority");
 
 const connection = mongoose.connection;
 connection.once('open', () => {
@@ -29,7 +33,7 @@ connection.once('open', () => {
 app.use('/api', require("./routes/api"));
 
 // const profiles = require('./routes/profiles');
-// app.use('/profiles',profiles);
+// app.use('/profiles', profiles);
 // app.use('/createProfile', require('./routes/createProfile'));
 // app.use('/createAdmin', require('./routes/createAdmin'));
 // app.use('/editProfile', require('./routes/editProfile'));
