@@ -23,7 +23,7 @@ const developerSchema = new Schema({
     },
     contact_2: {
         type: String,
-        required: true,
+        
     }
 }, {
     timestamps: true,
