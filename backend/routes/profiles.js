@@ -1,7 +1,7 @@
 const router = require('express').Router();
-let profile = require('../models/resume.model');
+const profile = require('../models/resume.model');
 
-router.route('/').get((req, res) => {
+router.route('/profiles').get((req, res) => {
     profile.find()
         .then(profiles => res.json(profiles))
         .catch(err => res.status(400).json('Error: ' + err));

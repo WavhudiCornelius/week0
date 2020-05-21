@@ -1,20 +1,13 @@
 const router = require('express').Router();
-let developer = require('../models/developer.model');
+const developer = require('../models/developer.model');
 
-router.route('/').get((req, res) => {
-    developer.find()
-        .then(developers => res.json(developers))
-        .catch(err => res.status(400).json('Error: ' + err));
-});
-
-router.route('/add').post((req, res) => {
-    const username = req.body.username;
-
-    const newDeveloper = new developer({username});
-
-    newDeveloper.save()
-    .then(() => res.json('developer added!'))
-    .catch(err => res.status(400).json('Error: ' + err));
+//add a new developer to the db
+router.route("/createProfile").post((req, res)=>{
+    //creates and saves a developer to the db
+    developer.create(req.body)
+    .then((newDev)=>{
+        res.send(newDev);//something needs to be sent
+    }).catch(err => res.status(400).json('Error: ' + err));//to move to the next middleware, which is the error handler
 });
 
 module.exports = router;
