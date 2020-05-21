@@ -4,29 +4,29 @@ const Schema = mongoose.Schema;
 
 const WorkExperienceSchema = new Schema(
     {
-        companyName: {type: String, required: true},
-        position: {type: String, required:true},
-        period: {type: String, required:true},
-        description: {type: String, required:true},
+        companyName: {type: String, required: false},
+        position: {type: String, required:false},
+        period: {type: String, required:false},
+        description: {type: String, required:false},
     }
 );
 
 const LanguageSchema = new Schema(
     {
-        name: {type: String, required: true},
-        rate: {type: Number, required: true},
-        duration: {type: Number, required: true},
+        name: {type: String, required: false},
+        rate: {type: Number, required: false},
+        duration: {type: Number, required: false},
     }
 );
 
 const resumeSchema = new Schema({
-    username: { type: String, required: true },
+    username: { type: String, required: false },
     education: { 
-        university: {type: String, required: true},
-        degree: {type: String, required: true},
-        levelOfCompletion: {type: String, required: true},
+        university: {type: String, required: false},
+        degree: {type: String, required: false},
+        levelOfCompletion: {type: String, required: false},
     },
-    rating: { type: Number, required: true },
+    rating: { type: Number, required: false },
     
     experience: [WorkExperienceSchema],
     
@@ -36,7 +36,7 @@ const resumeSchema = new Schema({
 
     hardSkills: { // What's this?
         type: Number, 
-        required: true,
+        required: false,
     },
 
     spokenLanguages: [LanguageSchema],
@@ -50,35 +50,35 @@ const resumeSchema = new Schema({
     mobileTools: [LanguageSchema],
     
     softSkills: {
-        type: Number, required: true,
+        type: Number, required: false,
     },
 
     selfMotivation: {
-        rate: {type: Number, required: true},
-        description: {type: String, required: true},
+        rate: {type: Number, required: false},
+        description: {type: String, required: false},
     },
     timeManagement: {
-        rate: {type: Number, required: true},
-        description: {type: String, required: true},
+        rate: {type: Number, required: false},
+        description: {type: String, required: false},
     },
     teamWork: {
-        rate: {type: Number, required: true},
-        description: {type: String, required: true},
+        rate: {type: Number, required: false},
+        description: {type: String, required: false},
     },
     communication: {
-        rate: {type: Number, required: true},
-        description: {type: String, required: true},
+        rate: {type: Number, required: false},
+        description: {type: String, required: false},
     },
     performance: {
-        rate: {type: Number, required: true},
-        description: {type: String, required: true},
+        rate: {type: Number, required: false},
+        description: {type: String, required: false},
     },
     conflictResolution: {
-        rate: {type: Number, required: true},
-        description: {type: String, required: true},
+        rate: {type: Number, required: false},
+        description: {type: String, required: false},
     },
 }, {
-    timestamps: true,
+    timestamps: false,
 });
 
 const resume = mongoose.model('resume', resumeSchema);
