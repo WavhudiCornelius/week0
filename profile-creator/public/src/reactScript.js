@@ -59,7 +59,7 @@ class LoginPage extends React.Component{
         var username = this.refs.username.value;
         var password = this.refs.password.value;
 
-        /** the following function makes a get request to the adress bellow, with the url
+        /** the following function makes a get request to the address bellow, with the url
          * parameters obtained from the form. It then converts the obtained data into json and then,
          * with that json, sets the state of the app, which will be used to render the developer list
          */

@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const path = require('path');
 
 require('dotenv').config();
 
@@ -12,7 +13,7 @@ app.use(express.json());
 
 //middleware to serve static files (html, css, images)
 //this has to come first
-app.use(express.static("../profile-creator/public"));
+// app.use(express.static("../profile-creator/public"));
 
 //taking care of all deprecation warnings
 mongoose.set('useNewUrlParser', true);
@@ -44,6 +45,17 @@ app.use('/api', require("./routes/api"));
 app.use((err, req, res, next)=>{
     res.status(422).send(err.message);
 });
+
+// serving the static files when in production
+if (process.env.NODE_ENV === "production"){
+    // serve static files from the folder bellow, which is created once everything is built
+    app.use(express.static("client/build"));
+
+    // this will basically just handle all remaining requests, not handled by the routes
+    app.get("*", (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    });
+}
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
