@@ -27,30 +27,27 @@ class App extends Component {
           /> 
           : 
           <LoginPage 
-            handleLogin={this.handleLogin}
-            username={this.usernameInput}
-            password = {this.passwordInput}
+            login={this.login}
           />
         }
       </div>
     );
   }
 
-  handleLogin = (e)=>{
-    e.preventDefault();
+  login = (loginDetails)=>{
     //make sure to use refs and not just ref
-    var username = this.usernameInput;
-    var password = this.passwordInput;
+    // var username = this.usernameInput;
+    // var password = this.passwordInput;
 
     /** the following function makes a get request to the address bellow, with the url
      * parameters obtained from the form. It then converts the obtained data into json and then,
      * with that json, sets the state of the app, which will be used to render the developer list
      */
     // the data to be sent to the server for authentication 
-    var loginDetails = {
-            username: username,
-            password: password,
-        }
+    // var loginDetails = {
+    //         username: username,
+    //         password: password,
+    //     }
     
     console.log(loginDetails);
     // sending the data to the server
