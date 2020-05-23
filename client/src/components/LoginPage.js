@@ -7,9 +7,6 @@ export default class LoginPage extends React.Component {
             username: "",
             password: ""
         }
-        // I was trying to create a way for the main app to read the values of the form
-        // this.username = React.useRef(this.props.usernameInput);
-        // this.password = React.useRef(this.props.passwordInput);
     }
 
     handleLogin = (e)=>{

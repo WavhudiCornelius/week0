@@ -47,7 +47,7 @@ app.use((err, req, res, next)=>{
 });
 
 // serving the static files when in production
-if (process.env.NODE_ENV === "production"){
+if (process.env.NODE_ENV !== "production"){ //change this back to ===
     // serve static files from the folder bellow, which is created once everything is built
     app.use(express.static("client/build"));
 
