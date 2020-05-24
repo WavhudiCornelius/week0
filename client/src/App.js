@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import {BrowserRouter, Route, withRouter} from 'react-router-dom';
+import { Route, Switch, withRouter} from 'react-router-dom'; // the BrowserRouter is included in the index.js file, that imports this one, so no need to import it here
 import LoginPage from './components/LoginPage';
-import ProfilePage from './components/ProfilesPage';
+import ProfilesPage from './components/ProfilesPage';
+import SingleProfile from './components/SingleProfile';import './App.css';
 import './App.css';
 
 class App extends Component {
@@ -18,33 +19,30 @@ class App extends Component {
 
   render(){
     return (
-      <BrowserRouter>
         <div className="App">
           {/* Creating routes: one for the login page, and one for the profiles page */}
           
-            <Route exact={true} path="/" render={(props) => <LoginPage {...props} login={this.login}/>}/>
-            
-            <Route path="/profiles" render={(props)=>
-              <ProfilePage 
-                {...props}
-                developers={this.state.developers} 
-                viewProfilePage={this.viewProfile}
-              />}
-            />
-          
+            <Switch>
+              <Route path="/profiles" render={(props)=>
+                <ProfilesPage 
+                  {...props}
+                  developers={this.state.developers} 
+                  viewProfilePage={this.viewProfile}
+                />}
+              />
 
-          {/* {this.state.isLoggedIn ? 
-            <ProfilePage
-              developers={this.state.developers} 
-              viewProfilePage={this.viewProfile}
-            /> 
-            : 
-            <LoginPage 
-              login={this.login}
-            />
-          } */}
+              <Route path="/profile/:name/:id" render={(props) => 
+                <SingleProfile 
+                  {...props} 
+                  // finding the developer whose id matches the requested id from the url
+                  developer={this.state.developers.find(dev => dev._id === props.match.params.id)}
+                />}
+                >
+              </Route>
+
+              <Route exact={true} path="/" render={(props) => <LoginPage {...props} login={this.login}/>}/>
+            </Switch>
         </div>
-      </BrowserRouter>
     );
   }
 
@@ -68,7 +66,7 @@ class App extends Component {
                       this.setState({developers: json});
                       console.log(this.state); // REMOVE THIS LINE
                       this.props.history.push("/profiles"); // redirecting the admin to the profiles page
-                      console.log(this.props);// REMOVE THIS LINE
+                      // console.log(this.props);// REMOVE THIS LINE
                     })
                     .catch(err => console.log("Error: ", err));
             }
@@ -88,7 +86,8 @@ class App extends Component {
     let username = profile.name;
     let id = profile.id;
 
-    console.log(`You want to view the profile of ${username} with id of ${id}`);
+    // console.log(`You want to view the profile of ${username} with id of ${id}`);
+    // console.log(this.props);
   }
 }
 

@@ -22,13 +22,12 @@ export default class LoginPage extends React.Component {
 
     render(){
         return (
-            <div className="login">
+            <div className="login container">
                 <form id="search" onSubmit={this.handleLogin} method="POST">
-                    {/* ref is a property that will help react find the input field later */}
                     <label htmlFor = "username">Enter your username:</label>
-                    <input type="text" id="username"  placeholder="username" onInput={this.handleInput} required/>
+                    <input type="text" id="username"  placeholder="username" onInput={this.handleInput} required autoComplete="true"/>
                     <label htmlFor="password">Enter your password:</label>
-                    <input type="password" id="password" placeholder="password" onInput={this.handleInput} required/> 
+                    <input type="password" id="password" placeholder="password" onInput={this.handleInput} required autoComplete="true"/> 
                     <input type="submit" value="Login" />
                 </form>
 
