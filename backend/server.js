@@ -12,7 +12,7 @@ app.use(express.json());
 
 //middleware to serve static files (html, css, images)
 //this has to come first
-app.use(express.static("../profile-creator/public"));
+//app.use(express.static("../profile-creator/public"));
 
 //taking care of all deprecation warnings
 mongoose.set('useNewUrlParser', true);
